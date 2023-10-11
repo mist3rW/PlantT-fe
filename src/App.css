@@ -16,7 +16,7 @@
 }
 
 .inner_content {
-  padding: 0 10rem;
+  padding: 2rem 10rem;
   flex: 1;
 }
 
@@ -105,4 +105,9 @@
   height: 297px;
   object-fit: cover;
   border-radius: 25px 25px 0 0;
+}
+
+img {
+  height: 100%;
+  width: 100%;
 }
