@@ -1,0 +1,88 @@
+const list = [
+  {
+    id: 1,
+    title: "BioBizz Alg-A-Mic",
+    price: 89,
+    img: "https://soilscapesolutions.com/wp-content/uploads/2022/02/Alg%C2%B7A%C2%B7Mic.jpg",
+    amount: 1,
+  },
+  {
+    id: 2,
+    title: "BioBizz Bio-Grow",
+    price: 98,
+    img: "https://cdn-hchof.nitrocdn.com/BWDRdHNXKRyVsDNUltDUnaPQOhxPAUOQ/assets/images/optimized/rev-122e060/wp-content/uploads/2022/01/Bio%C2%B7Grow.jpg",
+    amount: 1,
+  },
+  {
+    id: 3,
+    title: "BioBizz Bio-Bloom",
+    price: 143,
+    img: "https://soilscapesolutions.com/wp-content/uploads/2022/02/Bio%C2%B7Bloom-Product-Page.jpg",
+    amount: 1,
+  },
+  {
+    id: 4,
+    title: "BioBizz Bio – Heaven",
+    price: 57,
+    img: "https://cdn-hchof.nitrocdn.com/BWDRdHNXKRyVsDNUltDUnaPQOhxPAUOQ/assets/images/optimized/rev-122e060/wp-content/uploads/2022/01/Bio%C2%B7Heaven-Product-Page.jpg",
+    amount: 1,
+  },
+  {
+    id: 5,
+    title: "BioBizz Top-Max",
+    price: 149,
+    img: "https://cdn-hchof.nitrocdn.com/BWDRdHNXKRyVsDNUltDUnaPQOhxPAUOQ/assets/images/optimized/rev-122e060/wp-content/uploads/2022/02/Top%C2%B7Max-Product-Page.jpg",
+    amount: 1,
+  },
+  {
+    id: 6,
+    title: "BioBizz Root-Juice",
+    price: 135,
+    img: "https://soilscapesolutions.com/wp-content/uploads/2022/01/Root%C2%B7Juice.jpg",
+    amount: 1,
+  },
+  {
+    id: 7,
+    title: "BioBizz Alg-A-Mic",
+    price: 89,
+    img: "https://soilscapesolutions.com/wp-content/uploads/2022/02/Alg%C2%B7A%C2%B7Mic.jpg",
+    amount: 1,
+  },
+  {
+    id: 8,
+    title: "BioBizz Bio-Grow",
+    price: 98,
+    img: "https://cdn-hchof.nitrocdn.com/BWDRdHNXKRyVsDNUltDUnaPQOhxPAUOQ/assets/images/optimized/rev-122e060/wp-content/uploads/2022/01/Bio%C2%B7Grow.jpg",
+    amount: 1,
+  },
+  {
+    id: 9,
+    title: "BioBizz Bio-Bloom",
+    price: 143,
+    img: "https://soilscapesolutions.com/wp-content/uploads/2022/02/Bio%C2%B7Bloom-Product-Page.jpg",
+    amount: 1,
+  },
+  {
+    id: 10,
+    title: "BioBizz Bio – Heaven",
+    price: 57,
+    img: "https://cdn-hchof.nitrocdn.com/BWDRdHNXKRyVsDNUltDUnaPQOhxPAUOQ/assets/images/optimized/rev-122e060/wp-content/uploads/2022/01/Bio%C2%B7Heaven-Product-Page.jpg",
+    amount: 1,
+  },
+  {
+    id: 11,
+    title: "BioBizz Top-Max",
+    price: 149,
+    img: "https://cdn-hchof.nitrocdn.com/BWDRdHNXKRyVsDNUltDUnaPQOhxPAUOQ/assets/images/optimized/rev-122e060/wp-content/uploads/2022/02/Top%C2%B7Max-Product-Page.jpg",
+    amount: 1,
+  },
+  {
+    id: 12,
+    title: "BioBizz Root-Juice",
+    price: 135,
+    img: "https://soilscapesolutions.com/wp-content/uploads/2022/01/Root%C2%B7Juice.jpg",
+    amount: 1,
+  },
+];
+
+export default list;

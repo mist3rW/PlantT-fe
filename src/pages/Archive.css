@@ -1,0 +1,15 @@
+.plant_archive_sidebar {
+  grid-row: 2/-1;
+  grid-column: 1 / span 1;
+}
+
+.plant_archive_content {
+  grid-row: 2/-1;
+  grid-column: 2/-1;
+}
+
+.plant_archive_container {
+  display: grid;
+  /* grid-template-rows: $header-height calc(100vh - $header-height); */
+  grid-template-columns: 285px calc(100vw - 285px);
+}
