@@ -3,7 +3,6 @@ import axios from "axios";
 
 export function useCategories() {
   const [categories, setCategories] = useState([]);
-
   useEffect(() => {
     fetchCategories();
   }, []);

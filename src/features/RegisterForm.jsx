@@ -68,7 +68,16 @@ export default function RegisterForm() {
       .catch((err) => {
         toast.error(err.response?.data.message);
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setLoading(false);
+        setInput({
+          firstName: "",
+          lastName: "",
+          emailOrMobile: "",
+          password: "",
+          confirmPassword: "",
+        });
+      });
   };
 
   return (
