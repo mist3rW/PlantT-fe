@@ -1,4 +1,4 @@
-import InputField from "../../components/InputField";
+import InputField from "../../../components/InputField";
 
 export default function AddNewProduct() {
   return (
@@ -12,7 +12,9 @@ export default function AddNewProduct() {
           type="file"
         />
         <InputField placeholder="ชื่อสินค้า" />
+        <InputField placeholder="หมวดหมู่" />
         <InputField placeholder="SKU" />
+        <InputField placeholder="ราคา" />
         <InputField placeholder="แบรนด์" />
         <InputField placeholder="จำนวนสต็อก" />
         <textarea
@@ -22,6 +24,7 @@ export default function AddNewProduct() {
           rows={4}
           cols={40}
         />
+        <InputField placeholder="menu order" />
         <button className="bg-blue-500 text-white p-8">ยืนยัน</button>
       </div>
     </>

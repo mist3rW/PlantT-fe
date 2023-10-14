@@ -1,8 +1,9 @@
 import { useState } from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
+import Loading from "../components/Loading";
 
-export default function PopRegisterLogin() {
+export default function PopRegisterLogin({ closeModal }) {
   const [isRegister, setIsRegister] = useState(true);
 
   const toggleForm = () => {
@@ -78,7 +79,13 @@ export default function PopRegisterLogin() {
             </p>
             <div className="bg-[#E7E9E6] h-[1px] w-[80px]"></div>
           </div>
-          <div>{isRegister ? <RegisterForm /> : <LoginForm />}</div>
+          <div>
+            {isRegister ? (
+              <RegisterForm />
+            ) : (
+              <LoginForm closeModal={closeModal} />
+            )}
+          </div>
         </div>
       </div>
     </>

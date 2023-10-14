@@ -4,6 +4,11 @@ import PopRegisterLogin from "./PopRegisterLogin";
 
 export default function RegisterBtn() {
   const [isOpen, setIsOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
       <button
@@ -18,7 +23,7 @@ export default function RegisterBtn() {
         onClose={() => setIsOpen(false)}
         maxWidth={64}
       >
-        <PopRegisterLogin />
+        <PopRegisterLogin closeModal={closeModal} />
       </Modal>
     </>
   );

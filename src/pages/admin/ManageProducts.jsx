@@ -9,6 +9,9 @@ export default function ManageProducts() {
         <Link to="add-new-product">
           <button className="bg-red-500 p-4 text-white">เพิ่มสินค้า</button>
         </Link>
+        <Link to="category">
+          <button className="bg-blue-500 p-4 text-white">จัดการหมวดหมู่</button>
+        </Link>
       </div>
       <Outlet />
     </>

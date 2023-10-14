@@ -11,7 +11,8 @@ import AdminDashboard from "../pages/AdminDashboard";
 import ManageProducts from "../pages/admin/ManageProducts";
 import ManageUsers from "../pages/admin/ManageUsers";
 import ManageOrders from "../pages/admin/ManageOrders";
-import AddNewProduct from "../features/admin/AddNewProduct";
+import AddNewProduct from "../features/admin/Product/AddNewProduct";
+import CategoryPage from "../pages/admin/CategoryPage";
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,10 @@ const router = createBrowserRouter([
       {
         path: "manage-products/",
         element: <ManageProducts />,
-        children: [{ path: "add-new-product", element: <AddNewProduct /> }],
+        children: [
+          { path: "add-new-product", element: <AddNewProduct /> },
+          { path: "category", element: <CategoryPage /> },
+        ],
       },
     ],
   },
