@@ -1,8 +1,11 @@
 import ProductCard from "../components/ProductCard";
 import list from "../utils/data.js";
 import "./Archive.css";
+import useProduct from "../hooks/use-product";
 
 export default function Archive() {
+  const { productList, setProductList } = useProduct();
+  console.log(productList);
   return (
     <>
       <div>
@@ -11,8 +14,8 @@ export default function Archive() {
           alt=""
         />
       </div>
-      <div className="grid grid-cols-3 gap-y-10">
-        {list.map((product) => (
+      <div className="grid grid-cols-4 gap-x-1 gap-y-10">
+        {productList.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

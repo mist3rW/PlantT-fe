@@ -2,6 +2,7 @@ import { useState } from "react";
 import InputField from "../../../components/InputField";
 import { useCategories } from "../../../hooks/use-categories";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 export default function AddNewProduct() {
   const { categories } = useCategories();
@@ -44,29 +45,29 @@ export default function AddNewProduct() {
         categoryId: categoryId,
       };
 
-      const productResponse = await axios.post(
-        "http://localhost:3001/product",
-        productPayload
-      );
-      const productId = productResponse.data.product.id;
       //# NEW
       const formData = new FormData();
       formData.append("image_url", imageFile);
-      formData.append("productId", productId);
+      formData.append("productInfo", JSON.stringify(productPayload));
 
-      const imageResponse = await axios.post(
-        "http://localhost:3001/upload-product-image",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
+      const productResponse = await axios.post(
+        "http://localhost:3001/product",
+        formData
       );
 
       //#####
 
       console.log("Product Added Successfully", productResponse.data);
+      toast.success("Product Added Successfully!");
+      setProductData({
+        name: "",
+        sku: "",
+        price: "",
+        brand: "",
+        stock: "",
+        desc: "",
+        menu_order: 0,
+      });
     } catch (err) {
       console.log(err);
       console.error("Error Adding Product", err);
@@ -95,7 +96,7 @@ export default function AddNewProduct() {
           name="category"
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className=" border border-gray-300 text-gray-400  rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className="border border-gray-300 text-gray-400  rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
         >
           <option>เลือกหมวดหมู่</option>
           {categories.map((category) => (

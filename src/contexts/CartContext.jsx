@@ -10,9 +10,7 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
   const handleClickAddToCart = (product) => {
-    console.log(product);
     setCart((currentCart) => [...currentCart, product]);
-    console.log(cart);
   };
 
   const handleClickRemoveCartItems = (id) => {
