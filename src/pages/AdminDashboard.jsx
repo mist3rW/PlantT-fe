@@ -102,7 +102,7 @@ export default function AdminDashboard() {
                     />
                   </svg>
                   <span className="flex-1 ml-3 whitespace-nowrap">
-                    เข้าสู่ระบบ || ออกจากระบบ
+                    ออกจากระบบ
                   </span>
                 </a>
               </li>
