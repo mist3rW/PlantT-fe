@@ -16,6 +16,7 @@ export default function LoginForm({ closeModal }) {
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+
   const handleSubmitForm = (e) => {
     e.preventDefault();
     setLoading(true);

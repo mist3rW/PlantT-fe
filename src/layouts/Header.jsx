@@ -30,7 +30,7 @@ export default function Header() {
           </Link>
         </div>
         <div className="flex gap-4 pt-text">
-          <Link to="/thankyou">
+          <Link to="thankyou">
             <span>
               <FontAwesomeIcon icon={faMagnifyingGlass} />
             </span>

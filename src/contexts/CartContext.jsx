@@ -138,6 +138,10 @@ export const CartProvider = ({ children }) => {
     // setCart(updatedCartItemQty);
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   useEffect(() => {
     if (authUser) {
       fetchCartItem();
@@ -161,6 +165,7 @@ export const CartProvider = ({ children }) => {
         handleMinusQty,
         price,
         handleQtyChange,
+        clearCart,
       }}
     >
       {children}
