@@ -13,7 +13,7 @@ import { useAuth } from "../hooks/use-auth.js";
 export default function Header() {
   const { dropDownEl, isOpen, setIsOpen } = useDropDown();
   const { cart } = useCart();
-  const { authUser } = useAuth();
+  const { logout, authUser } = useAuth();
 
   return (
     <>
@@ -25,6 +25,9 @@ export default function Header() {
         </div>
         <div className=" list-none flex flex-row gap-4">
           <PrimaryMenu />
+          <Link to="/checkout">
+            <span>Checkout</span>
+          </Link>
         </div>
         <div className="flex gap-4 pt-text">
           <Link to="/thankyou">
@@ -38,7 +41,7 @@ export default function Header() {
               <span className="plant_cart_counter">{cart.length ?? 0}</span>
             </span>
           </Link>
-          <div ref={dropDownEl} className="relative">
+          <div ref={dropDownEl} className="relative z-40">
             <span onClick={() => setIsOpen(!isOpen)}>
               <FontAwesomeIcon icon={faUser} />
               {isOpen && (
@@ -48,7 +51,10 @@ export default function Header() {
                     <li className="hover:bg-gray-200 rounded-lg p-2 text-sm font-semibold cursor-pointer">
                       Dashboard
                     </li>
-                    <li className="hover:bg-gray-200 rounded-lg p-2 text-sm font-semibold cursor-pointer">
+                    <li
+                      className="hover:bg-gray-200 rounded-lg p-2 text-sm font-semibold cursor-pointer"
+                      onClick={logout}
+                    >
                       Logout
                     </li>
                   </ul>

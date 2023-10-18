@@ -96,11 +96,20 @@ export default function AddNewProduct() {
           name="category"
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="border border-gray-300 text-gray-400  rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          // className="border border-gray-300 text-gray-400  rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          className={`border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${
+            selectedCategory === "เลือกหมวดหมู่"
+              ? "text-gray-400"
+              : "text-black-500"
+          }`}
         >
-          <option>เลือกหมวดหมู่</option>
+          <option className="">เลือกหมวดหมู่</option>
           {categories.map((category) => (
-            <option key={category.id} value={category.name}>
+            <option
+              key={category.id}
+              value={category.name}
+              className="text-orange-300"
+            >
               {category.name}
             </option>
           ))}

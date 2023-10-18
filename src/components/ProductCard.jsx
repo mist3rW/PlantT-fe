@@ -5,7 +5,7 @@ import { useCart } from "../contexts/CartContext";
 export default function ProductCard({ product }) {
   const { handleClickAddToCart } = useCart();
   return (
-    <div className="plant_product_card pb-2 rounded-[25px] w-[285px] h-[402px] mt-2">
+    <div className="plant_product_card pb-2 rounded-[25px] w-auto h-[402px] mt-2">
       <div className="plant_product_img_box ">
         <img
           src={

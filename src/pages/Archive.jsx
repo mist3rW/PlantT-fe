@@ -14,7 +14,7 @@ export default function Archive() {
           alt=""
         />
       </div>
-      <div className="grid grid-cols-4 ">
+      <div className="grid grid-cols-4 gap-4">
         {productList.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
