@@ -13,15 +13,16 @@ import ManageUsers from "../pages/admin/ManageUsers";
 import ManageOrders from "../pages/admin/ManageOrders";
 import AddNewProduct from "../features/admin/Product/AddNewProduct";
 import CategoryPage from "../pages/admin/CategoryPage";
+import ManageSingleOrder from "../pages/admin/ManageSingleOrder";
+import RedirectIfNotAdmin from "../features/RedirectIfNotAdmin";
 
 const router = createBrowserRouter([
   {
     path: "/admeow/",
     element: (
-      // <RedirectIfAuthenticated>
-      <AdminDashboard />
-
-      // </RedirectIfAuthenticated>
+      <RedirectIfNotAdmin>
+        <AdminDashboard />
+      </RedirectIfNotAdmin>
     ),
     children: [
       { path: "", element: <AdminDashboard /> },
@@ -35,6 +36,7 @@ const router = createBrowserRouter([
           { path: "category", element: <CategoryPage /> },
         ],
       },
+      { path: "order/:orderId", element: <ManageSingleOrder /> },
     ],
   },
   {
@@ -51,15 +53,15 @@ const router = createBrowserRouter([
         element: <Archive />,
         children: [],
       },
-      { path: "product", element: <SingleProductPage /> },
+      { path: "product/:productId", element: <SingleProductPage /> },
       { path: "contact", element: <Contact /> },
       { path: "cart", element: <CartPage /> },
       {
         path: "checkout",
         element: <CheckoutPage />,
-        children: [{ path: "thankyou", element: <ThankyouPage /> }],
+        // children: [{ path: "thankyou", element: <ThankyouPage /> }],
       },
-      { path: "thankyou", element: <ThankyouPage /> },
+      { path: "checkout/thankyou/:orderId", element: <ThankyouPage /> },
     ],
   },
 ]);

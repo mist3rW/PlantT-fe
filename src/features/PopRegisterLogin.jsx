@@ -4,11 +4,12 @@ import RegisterForm from "./RegisterForm";
 import Loading from "../components/Loading";
 
 export default function PopRegisterLogin({ closeModal }) {
-  const [isRegister, setIsRegister] = useState(true);
+  const [isRegister, setIsRegister] = useState(false);
 
   const toggleForm = () => {
     setIsRegister(!isRegister);
   };
+
   return (
     <>
       <div className="grid grid-cols-2">

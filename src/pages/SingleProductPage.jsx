@@ -1,81 +1,166 @@
+import { useParams } from "react-router-dom";
 import Counter from "../components/Counter";
 import SubmitBtn from "../components/SubmitBtn";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Loading from "../components/Loading";
+import { useAuth } from "../hooks/use-auth";
+import { useCart } from "../contexts/CartContext";
+import { toast } from "react-toastify";
 
 export default function SingleProductPage() {
+  const { fetchCartItem } = useCart();
+  const { authUser } = useAuth();
+  const [qty, setQty] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const [product, setProduct] = useState(null);
+
+  const { productId } = useParams();
+
+  const handleAddToCart = async () => {
+    try {
+      await axios.post("http://localhost:3001/cart/add", {
+        productId,
+        userId: authUser.id,
+        qty: +qty,
+      });
+      console.log("product added to cart successfully!");
+      setQty(1);
+      fetchCartItem();
+    } catch (error) {
+      console.log("Error", error);
+      toast.error("Please login before shopping");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const fetchSingleProductData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/product/${productId}`
+        );
+        console.log(response.data.product);
+        setProduct(response.data.product);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Could not fetch product data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchSingleProductData();
+  }, [productId]);
+
+  if (!product) {
+    return <Loading />;
+  }
+
   return (
     <div className="grid grid-cols-2 gap-8">
-      <div>
-        <img src="../../public/product_image_1.png" alt="" />
-        <img src="../../public/product_image_2.png" alt="" />
+      {isLoading && <Loading />}
+      <div className="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
+        <img src={product.Product_image[0]?.image_url} alt="" className="" />
       </div>
       <div className="space-y-4">
-        <h1 className="font-semibold text-2xl">BioBizz Acti Vera</h1>
+        <h1 className="font-semibold text-2xl">{product.name}</h1>
         <p>
-          Brand: <span className="text-green-600">BioBizz</span>
+          Brand: <span className="text-green-600">{product.brand}</span>
         </p>
         <div className="bg-[#FAFAFA] w-full p-4">
-          <p className="text-[#878787] text-3xl font-medium">฿1,989</p>
-        </div>
-        <div>
-          <p>
-            เมื่อพืชช่วยพืชอย่างเป็นธรรมชาติ
-            สรรพคุณของสมุนไพรจะถูกเสริมให้ไปถึงขั้นสูงสุด
-            <br /> <br />
-            ว่านหางจระเข้เป็นหัวใจสำคัญของ ไบโอบิซ แอคทิเวร่า
-            ซึ่งเป็นสารกระตุ้นเกษตรอินทรีย์ที่ถูกออกแบบมาเพื่อปกป้องระบบภูมิคุ้มกัน
-            เพิ่มการเผาผลาญ และเพิ่มการดูดซึมสารอาหาร แอคทิเวร่า
-            ช่วยสลายน้ำตาลในดิน เลี้ยงจุลินทรีย์ในดิน ส่งเสริมการย่อยสลาย
-            เร่งการเจริญเติบโตของพืช และเพิ่มการสังเคราะห์ด้วยแสง
-            ส่วนประกอบมาจากพืช 100% <br /> <br />
-            แอคทิเวร่า สามา รถใช้กับพืชได้หลายชนิด โดยเฉพาะสมุนไพร
-            ใช้ได้ทั้งในช่วงการเจริญเติบโตและระยะออกดอก
-            ช่วยกระตุ้นการเจริญเติบโตและการออกดอก
-            ทำให้พืชแข็งแรงและมีสุขภาพดีทั้งภายในและภายนอก <br /> <br />
-            ไบโอบิซ เป็นผลิตภัณฑ์ออร์แกนิก 100%
-            เป็นมิตรกับสิ่งแวดล้อมและใช้งานง่าย ความลับที่ทำให้ผลิตภัณฑ์ของ
-            ไบโอบิซ ดีกว่าปุ๋ยหมักอินทรีย์ทั่วไปคือส่วนผสมของน้ำวีนาส
-            ซึ่งเป็นสารสกัดผักการฝรั่ง 100% จากเนเธอร์แลนด์
-            โดยสูตรที่เราใช้ส่วนใหญ่จะประกอบไปด้วยกากน้ำตาล
-            น้ำวีนาสจะทำการกระตุ้นการทำงานของแบคทีเรียที่ดีกับพืชในสารตั้งต้นตามธรรมชาติ
-            เพิ่มการเจริญเติบโตและความมีชีวิตชีวาของพืชโดยไม่ต้องใช้สารเคมีสังเคราะห์หรือสารเติมแต่ง
-            <br /> <br />
-            วิธีการธรรมชาติที่เราใช้ในการให้พืชเสริมสร้างพืช
-            จะช่วยสร้างผลผลิตที่มีคุณภาพมากกว่าผลิตภัณฑ์ปุ๋ยอินทรีย์ทั่วไป
-            แอคทิเวร่า แตกต่างอย่างไร? ความแตกต่างที่สำคัญที่สุดระหว่างผลิตภัณฑ์
-            ไบโอบิซ อื่นๆ ของเราที่มีส่วนประกอบจากพื้นดินหรือทะเล แอคทิเวร่า
-            นั้นทำจากพืชเพื่อเพิ่มคุณค่าให้กับพืช <br /> <br />
-            ทำไมต้องใช้ แอคทิเวร่า? <br /> <br />
-            แอคทิเวร่า ทำให้พืชแข็งแรงและมีสุขภาพดีทั้งภายในและภายนอก
-            ช่วยปกป้องและกระตุ้นระบบภูมิคุ้มกัน เพิ่มการงอกและการเผาผลาญของพืช
-            สลายน้ำตาลและเพิ่มการดูดซึมสารอาหาร
-            เป็นผลิตภัณฑ์ที่สร้างจากธรรมชาติที่ให้ผลเกือบเหนือธรรมชาติ
-            และทำมาจากพืช 100% พืชชนิดใดเหมาะกับ แอคทิเวร่า? แอคทิเวร่า
-            มีความหลากหลายมาก สามารถใช้ได้ทั้งการปลูกในร่มและกลางแจ้ง
-            ใช้กับพืชอาหาร ใช้ในไร่ ใช้กับไม้ยืนต้น และไม้ประดับ
-            ได้ในช่วงระยะการเจริญเติบโตและการออกดอก
-            เพื่อกระตุ้นการเจริญเติบโตและการออกดอก <br /> <br />
-            แอคทิเวร่าใช้ยังไง? <br /> <br />
-            1. ผสม - ผสม แอคทิเวร่า ลงในแท้งค์น้ำหรือภาชนะแล้วคนให้เข้ากับน้ำ
-            <br />
-            2. เติมสารอาหาร - เพิ่มสารอาหาร ไบโอบิซ ที่เหมาะกับพืช และผสม
-            แอคทิเวร่า ตามเข้าไป
-            สามารถเพิ่มอาหารเสริมอื่นๆเข้าไปด้วยได้ตามความเหมาะสม <br />
-            3. ปรับระดับกรด-ด่าง - ปรับระดับกรด-ด่าง ตามความจำเป็น <br />
-            4. ใช้ปริมาณที่ถูกต้อง - เราแนะนำให้ใช้ แอคทิเวร่า ปริมาณ 5 มล.
-            ต่อน้ำ 1 ลิตร สำหรับรดน้ำจากกระป๋อง หรือ 1-2 มล.
-            ต่อน้ำหนึ่งลิตรเพื่อสเปรย์ทางใบ
+          <p className="text-[#878787] text-3xl font-medium">
+            ฿{product.price}
           </p>
         </div>
-        <div className="flex gap-4">
-          <Counter />
-          <p className="text-green-500"> 21 IN STOCK</p>
+        <div>
+          <p>{product.desc}</p>
         </div>
-        <SubmitBtn className=" w-6/12">เพิ่มไปยังรถเข็น</SubmitBtn>
+        <div className="flex gap-4">
+          <div className="flex items-center space-x-3">
+            <button
+              className="inline-flex items-center justify-center p-1 text-sm font-medium h-6 w-6 text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+              type="button"
+              onClick={() => {
+                if (qty > 1) {
+                  setQty(qty - 1);
+                }
+              }}
+            >
+              <span className="sr-only"> Minus Qty Button</span>
+              <svg
+                className="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 18 2"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M1 1h16"
+                />
+              </svg>
+            </button>
+            <div>
+              <input
+                type="number"
+                id="first_product"
+                className="bg-gray-50 w-14 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block px-2.5 py-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                placeholder="1"
+                onChange={(e) => setQty(e.target.value)}
+                value={qty}
+              />
+            </div>
+            <button
+              className="inline-flex items-center justify-center h-6 w-6 p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover-bg-gray-700 dark:hover-border-gray-600 dark:focus:ring-gray-700"
+              type="button"
+              onClick={() => setQty(qty + 1)}
+            >
+              <span className="sr-only"> Plus Qty Button</span>
+              <svg
+                className="w-3 h-3"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 18 18"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 1v16M1 9h16"
+                />
+              </svg>
+            </button>
+          </div>
+          <div className="w-fit">
+            <p
+              className={` px-2 ${
+                product.stock === 0
+                  ? "bg-red-500 text-white"
+                  : "bg-green-500 text-white"
+              }`}
+            >
+              {product.stock === 0
+                ? "OUT OF STOCK"
+                : `IN STOCK: ${product.stock}`}
+            </p>
+          </div>
+        </div>
+
+        <SubmitBtn className=" w-6/12" onClick={handleAddToCart}>
+          เพิ่มไปยังรถเข็น
+        </SubmitBtn>
         <p>
-          รหัสสินค้า: <span>BBAV</span>
+          รหัสสินค้า: <span>{product.SKU}</span>
         </p>
         <p>
-          หมวดหมู่: <span>ปุ๋ยออแกร์นิค</span>
+          หมวดหมู่: <span>{product.Product_category[0].category.name}</span>
         </p>
       </div>
     </div>

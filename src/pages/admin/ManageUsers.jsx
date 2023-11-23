@@ -7,7 +7,7 @@ export default function ManageUsers() {
   const [userList, setUserList] = useState([]);
   const fetchUserData = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/user");
+      const response = await axios.get("http://localhost:3001/user/all-users");
       setUserList(response.data);
     } catch (error) {
       console.error("Error fetching userdata:", error);

@@ -75,7 +75,7 @@ export default function CheckoutPage() {
         total_amount: totalAmount,
         cart,
       };
-      const createNewOrder = await axios.post(
+      const res = await axios.post(
         "http://localhost:3001/checkout/add-order",
         newOrderPayload
       );
@@ -90,10 +90,11 @@ export default function CheckoutPage() {
         province: "",
         zip: "",
       });
+      const createNewOrder = res.data;
       clearCart();
       setSelectedPaymentMethod([]);
       setIsLoading(false);
-      navigate("/checkout/thankyou");
+      navigate(`/checkout/thankyou/${createNewOrder.orderId}`);
     } catch (error) {
       setIsLoading(false);
       console.error(error);

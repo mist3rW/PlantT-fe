@@ -1,5 +1,4 @@
 import ProductCard from "../components/ProductCard";
-import list from "../utils/data.js";
 import "./Archive.css";
 import useProduct from "../hooks/use-product";
 

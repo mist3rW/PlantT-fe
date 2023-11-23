@@ -2,6 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../hooks/use-auth";
 import { useCartItem } from "../hooks/use-cart";
+import { toast } from "react-toastify";
 
 const CartContext = createContext();
 
@@ -47,6 +48,7 @@ export const CartProvider = ({ children }) => {
       console.log("Cart Item Added Successfully!");
     } catch (err) {
       console.error(err);
+      toast.error("Please login before shopping");
     }
   };
 
@@ -166,6 +168,7 @@ export const CartProvider = ({ children }) => {
         price,
         handleQtyChange,
         clearCart,
+        fetchCartItem,
       }}
     >
       {children}

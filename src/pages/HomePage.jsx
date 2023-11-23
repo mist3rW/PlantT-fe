@@ -1,6 +1,11 @@
 import RegisterBtn from "../features/RegisterBtn";
+import { faCirclePlay } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useProduct from "../hooks/use-product";
+import ProductCard from "../components/ProductCard";
 
 export default function HomePage() {
+  const { productList, setProductList } = useProduct();
   return (
     <>
       {/* Hero Section */}
@@ -26,7 +31,13 @@ export default function HomePage() {
                 >
                   เข้าชมสินค้า
                 </button>
-                <RegisterBtn />
+                <button
+                  type="button"
+                  className="focus:outline-none text-green-800 border border-green-700 hover:text-white bg-white hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+                >
+                  ดูวิดีโอของเรา&nbsp;
+                  <FontAwesomeIcon icon={faCirclePlay} />
+                </button>
               </div>
             </div>
             <div>
@@ -85,107 +96,10 @@ export default function HomePage() {
           </div>
         </section>
         {/* Featured Product */}
-        <section className="flex flex-row gap-4">
-          <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-            <a href="#">
-              <img
-                className="rounded-t-lg"
-                src="../../public/bio-bloom.jpg"
-                alt=""
-              />
-            </a>
-            <div className="p-5">
-              <a href="#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  BioBizz Bio Bloom
-                </h5>
-              </a>
-              <p className="mb-3 mt-3 font-normal text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa
-                elementum eu
-              </p>
-              <hr />
-              <div className="flex flex-row gap-4 mt-3">
-                <p> ราคา </p>
-                <p>฿1,450</p>
-              </div>
-            </div>
-          </div>
-          <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-            <a href="#">
-              <img
-                className="rounded-t-lg"
-                src="../../public/bio-bloom.jpg"
-                alt=""
-              />
-            </a>
-            <div className="p-5">
-              <a href="#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  BioBizz Bio Bloom
-                </h5>
-              </a>
-              <p className="mb-3 mt-3 font-normal text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa
-                elementum eu
-              </p>
-              <hr />
-              <div className="flex flex-row gap-4 mt-3">
-                <p> ราคา </p>
-                <p>฿1,450</p>
-              </div>
-            </div>
-          </div>
-          <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-            <a href="#">
-              <img
-                className="rounded-t-lg"
-                src="../../public/bio-bloom.jpg"
-                alt=""
-              />
-            </a>
-            <div className="p-5">
-              <a href="#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  BioBizz Bio Bloom
-                </h5>
-              </a>
-              <p className="mb-3 mt-3 font-normal text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa
-                elementum eu
-              </p>
-              <hr />
-              <div className="flex flex-row gap-4 mt-3">
-                <p> ราคา </p>
-                <p>฿1,450</p>
-              </div>
-            </div>
-          </div>
-          <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-            <a href="#">
-              <img
-                className="rounded-t-lg"
-                src="../../public/bio-bloom.jpg"
-                alt=""
-              />
-            </a>
-            <div className="p-5">
-              <a href="#">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  BioBizz Bio Bloom
-                </h5>
-              </a>
-              <p className="mb-3 mt-3 font-normal text-gray-700 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Massa
-                elementum eu
-              </p>
-              <hr />
-              <div className="flex flex-row gap-4 mt-3">
-                <p> ราคา </p>
-                <p>฿1,450</p>
-              </div>
-            </div>
-          </div>
+        <section className="grid grid-cols-4 gap-4">
+          {productList.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </section>
       </main>
     </>

@@ -4,6 +4,12 @@ import {
   faMapPin,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faInstagram,
+  faLine,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
   return (
@@ -42,8 +48,10 @@ export default function Footer() {
             ></iframe>
             <div className="flex justify-between items-center">
               <div className="ft-icon__box flex gap-4 py-4">
-                <FontAwesomeIcon icon={faMapPin} />
-                <FontAwesomeIcon icon={faMapPin} />
+                <FontAwesomeIcon icon={faTwitter} />
+                <FontAwesomeIcon icon={faFacebook} />
+                <FontAwesomeIcon icon={faLine} />
+                <FontAwesomeIcon icon={faInstagram} />
               </div>
               <div className="text-white">
                 © 2023 Copyright PlantT. All Rights Reserved.
